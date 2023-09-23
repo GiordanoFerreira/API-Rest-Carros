@@ -10,6 +10,6 @@ public class IndexController {
 
     @GetMapping
     public String helloWorld(){
-        return "Hello World!";
+        return "API dos Carros";
     }
 }
