@@ -2,7 +2,6 @@ package com.giordano.carros.api;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,10 +32,10 @@ public class CarroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getCarroId(@PathVariable("id") Long id) {
-        Optional<CarroDTO> carro = carros.getCarroById(id);
+    public ResponseEntity<CarroDTO> getCarroId(@PathVariable("id") Long id) {
+        CarroDTO carro = carros.getCarroById(id);
 
-        return carro.isPresent() ? ResponseEntity.ok(carro) : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(carro);
 
         // if(carro.isPresent()){
         // return ResponseEntity.ok(carro.get());
@@ -46,7 +45,7 @@ public class CarroController {
     }
 
     @GetMapping("/tipo/{tipo}")
-    public ResponseEntity getCarroId(@PathVariable("tipo") String tipo) {
+    public ResponseEntity<List<CarroDTO>> getCarroId(@PathVariable("tipo") String tipo) {
         List<CarroDTO> carro = carros.getCarroByTipo(tipo);
 
         // Menos verboso
@@ -61,7 +60,7 @@ public class CarroController {
     }
 
     @PostMapping
-    public ResponseEntity salvarCarro(@RequestBody Carro carro) {
+    public ResponseEntity<CarroDTO> salvarCarro(@RequestBody Carro carro) {
         try {
             CarroDTO c = carros.save(carro);
 
@@ -80,7 +79,7 @@ public class CarroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity editarCarro(@PathVariable("id") Long id, @RequestBody Carro carro) {
+    public ResponseEntity<CarroDTO> editarCarro(@PathVariable("id") Long id, @RequestBody Carro carro) {
         carro.setId(id);
 
         CarroDTO c = carros.update(carro, id);
@@ -90,9 +89,9 @@ public class CarroController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity excluirCarro(@PathVariable("id") Long id) {
-        boolean ok = carros.delete(id);
+    public ResponseEntity<Void> excluirCarro(@PathVariable("id") Long id) {
+        carros.delete(id);
 
-        return ok ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+        return ResponseEntity.ok().build();
     }
 }

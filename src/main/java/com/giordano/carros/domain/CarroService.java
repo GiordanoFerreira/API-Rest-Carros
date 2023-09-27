@@ -30,8 +30,10 @@ public class CarroService {
         // return list;
     }
 
-    public Optional<CarroDTO> getCarroById(Long id) {
-        return carroRepository.findById(id).map(CarroDTO::new);
+    public CarroDTO getCarroById(Long id) {
+        Optional<Carro> carro = carroRepository.findById(id);
+
+        return carro.map(CarroDTO::new).orElseThrow();
     }
 
     public List<CarroDTO> getCarroByTipo(String tipo) {
@@ -62,11 +64,7 @@ public class CarroService {
         }
     }
 
-    public boolean delete(Long id) {
-        if (getCarroById(id).isPresent()) {
-            carroRepository.deleteById(id);
-            return true;
-        }
-        return false;
+    public void delete(Long id) {
+        carroRepository.deleteById(id);
     }
 }
