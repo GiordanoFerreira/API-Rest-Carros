@@ -20,7 +20,7 @@ import com.giordano.carros.domain.CarroService;
 import com.giordano.carros.domain.dto.CarroDTO;
 
 @RestController
-@RequestMapping("/api/carros")
+@RequestMapping("/api/v1/carros")
 public class CarroController {
 
     @Autowired
