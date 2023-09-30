@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.giordano.carros.domain.Carro;
-import com.giordano.carros.domain.CarroService;
 import com.giordano.carros.domain.dto.CarroDTO;
+import com.giordano.carros.domain.entity.Carro;
+import com.giordano.carros.domain.service.CarroService;
 
 @RestController
 @RequestMapping("/api/v1/carros")
@@ -61,16 +61,13 @@ public class CarroController {
 
     @PostMapping
     public ResponseEntity<CarroDTO> salvarCarro(@RequestBody Carro carro) {
-        try {
-            CarroDTO c = carros.save(carro);
 
-            // O location irá ser a URL com id do novo recurso criado que irá aparecer no
-            // Header
-            URI location = getUri(c.getId());
-            return ResponseEntity.created(location).build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        CarroDTO c = carros.save(carro);
+
+        // O location irá ser a URL com id do novo recurso criado que irá aparecer no
+        // Header
+        URI location = getUri(c.getId());
+        return ResponseEntity.created(location).build();
     }
 
     // Método para que o spring monte a URL até o novo recurso criado no POST

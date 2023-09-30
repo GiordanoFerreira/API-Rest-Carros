@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.giordano.carros.domain.Carro;
-import com.giordano.carros.domain.CarroService;
 import com.giordano.carros.domain.dto.CarroDTO;
+import com.giordano.carros.domain.entity.Carro;
+import com.giordano.carros.domain.service.CarroService;
 
 @SpringBootTest
 class CarrosServiceTest {

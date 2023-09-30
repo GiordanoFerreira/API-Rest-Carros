@@ -1,6 +1,6 @@
 package com.giordano.carros.domain.dto;
 
-import com.giordano.carros.domain.Carro;
+import com.giordano.carros.domain.entity.Carro;
 
 import lombok.Data;
 

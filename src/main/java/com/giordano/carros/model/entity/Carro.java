@@ -1,4 +1,4 @@
-package com.giordano.carros.domain;
+package com.giordano.carros.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

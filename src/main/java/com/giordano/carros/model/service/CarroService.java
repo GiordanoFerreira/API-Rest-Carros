@@ -1,4 +1,4 @@
-package com.giordano.carros.domain;
+package com.giordano.carros.domain.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import com.giordano.carros.domain.dto.CarroDTO;
+import com.giordano.carros.domain.entity.Carro;
+import com.giordano.carros.domain.repository.CarroRepository;
 
 @Service
 public class CarroService {
